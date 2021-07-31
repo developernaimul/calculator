@@ -1,0 +1,290 @@
+* {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+:root {
+	--bg: #c7cad1;
+	--fg: #17181c;
+	--calcBg: #e3e4e8;
+	--fg: #17181c;
+	--logoBlue: #255ff4;
+	--transDur: 0.05s;
+	--buttonTiming: linear;
+	font-size: calc(20px + (30 - 20) * (100vw - 320px) / (1280 - 320));
+}
+body, button, input {
+	color: var(--fg);
+	font: 1em/1.5 "Hind", sans-serif;
+}
+body {
+	background-color: var(--bg);
+	display: grid;
+	padding: 1.5em 0;
+	place-items: center;
+	height: 100vh;
+}
+.calc {
+	background-color: var(--calcBg);
+	background-image:
+		linear-gradient(180deg,#0000,#0001),
+		radial-gradient(0.25em 0.25em at 0.5em 0.25em,#fff7 25%,#fff0 50%),
+		radial-gradient(95% 0.25em at 50% 0.25em,#fff7 25%,#fff0 50%);
+	border-radius: 0.75em;
+	box-shadow:
+		0 0.5em 0.5em #fff4 inset,
+		0 -0.125em 0.25em 0.125em #0007 inset,
+		0 0.25em 0.75em #0007;
+	padding: 0.25em 1em;
+	position: relative;
+	width: 12em;
+	height: 19.5em;
+}
+.calc__btns {
+	display: grid;
+	grid-template-columns: repeat(4,1fr);
+	grid-template-rows: repeat(6,1.5em);
+	grid-gap: 0.5em 0.75em;
+}
+.calc__btn:focus, .calc__btn span:focus, .calc__screen:focus {
+	outline: transparent;
+}
+.calc__btn, .calc__screen {
+	-webkit-appearance: none;
+	appearance: none;
+}
+.calc__btn, .calc__btn.calc__btn--primary, .calc__btn.calc__btn--secondary {
+	color: #fff;
+}
+.calc__btn {
+	background-color: #2e3138;
+	background-image:
+		linear-gradient(180deg,#0000,#0002),
+		radial-gradient(90% 0.125em at 50% 0.125em,#fff7 25%,#fff0 50%);
+	border: 0;
+	border-radius: 0.25em;
+	box-shadow:
+		0.125em 0.125em 0.25em #0007,
+		0 -0.05em 0 0.05em #0004,
+		0 0.05em 0 0.05em #fff4,
+		-0.125em 0 0.125em #22252a inset,
+		0 0.125em 0.125em #fff4 inset,
+		0.125em 0 0.125em #fff4 inset,
+		0 -0.125em 0.125em #22252a inset;
+	cursor: pointer;
+	text-shadow: 0 0 0.125em #fff7;
+	transition: box-shadow var(--transDur) var(--buttonTiming);
+	-webkit-tap-highlight-color: #0000;
+}
+.calc__btn:active, .calc__btn.calc__btn--active {
+	box-shadow:
+		0 0 0 #0007,
+		0 -0.05em 0 0.05em #0004,
+		0 0.05em 0 0.05em #fff4,
+		-0.125em 0 0.125em #0b0c0e inset,
+		0 0.125em 0.125em #0004 inset,
+		0.125em 0 0.125em #0004 inset,
+		0 -0.125em 0.125em #0b0c0e inset;
+}
+.calc__btn:active span, .calc__btn.calc__btn--active span {
+	transform: scale(0.95);
+}
+.calc__btn:focus {
+	color: #86a6f9;
+	text-shadow: 0 0 0.25em #86a6f977;
+}
+.calc__btn small, .calc__btn span {
+	pointer-events: none;
+}
+.calc__btn span {
+	display: block;
+	transition: transform var(--transDur) var(--buttonTiming);
+}
+.calc__btn.calc__btn--primary {
+	background-color: #255ff4;
+	box-shadow:
+		0.125em 0.125em 0.25em #0007,
+		0 -0.05em 0 0.05em #0004,
+		0 0.05em 0 0.05em #fff4,
+		-0.125em 0 0.125em #0936aa inset,
+		0 0.125em 0.125em #fff4 inset,
+		0.125em 0 0.125em #fff4 inset,
+		0 -0.125em 0.125em #0936aa inset;
+}
+.calc__btn.calc__btn--primary:active, .calc__btn.calc__btn--primary.calc__btn--active {
+	box-shadow:
+		0 0 0 #0007,
+		0 -0.05em 0 0.05em #0004,
+		0 0.05em 0 0.05em #fff4,
+		-0.125em 0 0.125em #062779 inset,
+		0 0.125em 0.125em #0004 inset,
+		0.125em 0 0.125em #0004 inset,
+		0 -0.125em 0.125em #062779 inset;
+}
+.calc__btn.calc__btn--secondary {
+	background-color: #5c6270;
+	box-shadow:
+		0.125em 0.125em 0.25em #0007,
+		0 -0.05em 0 0.05em #0004,
+		0 0.05em 0 0.05em #fff4,
+		-0.125em 0 0.125em #454954 inset,
+		0 0.125em 0.125em #fff4 inset,
+		0.125em 0 0.125em #fff4 inset,
+		0 -0.125em 0.125em #454954 inset;
+}
+.calc__btn.calc__btn--secondary:active, .calc__btn.calc__btn--secondary.calc__btn--active {
+	box-shadow:
+		0 0 0 #0007,
+		0 -0.05em 0 0.05em #0004,
+		0 0.05em 0 0.05em #fff4,
+		-0.125em 0 0.125em #2e3138 inset,
+		0 0.125em 0.125em #0004 inset,
+		0.125em 0 0.125em #0004 inset,
+		0 -0.125em 0.125em #2e3138 inset;
+}
+.calc__btn--tall {
+	grid-column: 4 / 5;
+	grid-row: 5 / 7;
+}
+.calc__error, .calc__memory, .calc__screen {
+	color: #17181c;
+}
+.calc__error, .calc__memory {
+	font-weight: bold;
+	position: absolute;
+	left: 1.5em;
+	text-shadow: 0.1em 0.1em 0.1em #0004;
+}
+.calc__error {
+	top: 4.3em;
+}
+.calc__memory {
+	top: 3.4em;
+}
+.calc__j {
+	color: var(--logoBlue);
+	text-shadow: 0 0 0.25em #255ff444;
+}
+.calc__logo {
+	font-size: 2em;
+	text-align: center;
+	text-shadow: 0 0 0.25em #0004;
+	height: 3rem;
+}
+.calc__screen {
+	background-image: linear-gradient(180deg,#9aa38f,#8d9781);
+	border-top: 0.25rem solid #abafba;
+	border-right: 0.25rem solid #abafba;
+	border-bottom: 0.25rem solid #fff;
+	border-left: 0.25rem solid #c7cad1;
+	border-radius: 0.25rem;
+	box-shadow:
+		0 0.25rem 0.25rem #0007 inset;
+	display: block;
+	font: 2em/1 "VT323", monospace;
+	margin: 0 auto 1rem auto;
+	padding: 0 0.25rem;
+	text-align: right;
+	text-shadow: 0.1rem 0.1rem 0.1rem #0004;
+	text-transform: uppercase;
+	width: 100%;
+}
+.calc__screen--fade-in {
+	animation: valueBlink 0.05s linear;
+}
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #454954;
+		--fg: #e3e4e8;
+		--calcBg: #17181c;
+		--logoBlue: #5583f6;
+	}
+	.calc__btn {
+		background-color: #e3e4e8;
+		background-image:
+			linear-gradient(180deg,#0000,#0002),
+			radial-gradient(90% 0.125em at 50% 0.125em,#fff7 25%,#fff0 50%);
+		box-shadow:
+			0.125em 0.125em 0.25em #0007,
+			0 -0.05em 0 0.05em #0004,
+			0 0.05em 0 0.05em #fff1,
+			-0.125em 0 0.125em #737a8c inset,
+			0 0.125em 0.125em #fff4 inset,
+			0.125em 0 0.125em #fff4 inset,
+			0 -0.125em 0.125em #737a8c inset;
+		color: #17181c;
+		text-shadow: 0 0 0.125em #fff7;
+	}
+	.calc__btn:active, .calc__btn.calc__btn--active {
+		box-shadow:
+			0 0 0 #0007,
+			0 -0.05em 0 0.05em #0004,
+			0 0.05em 0 0.05em #fff1,
+			-0.125em 0 0.125em #5c6270 inset,
+			0 0.125em 0.125em #0004 inset,
+			0.125em 0 0.125em #0004 inset,
+			0 -0.125em 0.125em #5c6270 inset;
+	}
+	.calc__btn.calc__btn--primary {
+		box-shadow:
+			0.125em 0.125em 0.25em #0007,
+			0 -0.05em 0 0.05em #0004,
+			0 0.05em 0 0.05em #fff1,
+			-0.125em 0 0.125em #0936aa inset,
+			0 0.125em 0.125em #fff4 inset,
+			0.125em 0 0.125em #fff4 inset,
+			0 -0.125em 0.125em #0936aa inset;
+	}
+	.calc__btn.calc__btn--primary:active, .calc__btn.calc__btn--primary.calc__btn--active {
+		box-shadow:
+			0 0 0 #0007,
+			0 -0.05em 0 0.05em #0004,
+			0 0.05em 0 0.05em #fff1,
+			-0.125em 0 0.125em #062779 inset,
+			0 0.125em 0.125em #0004 inset,
+			0.125em 0 0.125em #0004 inset,
+			0 -0.125em 0.125em #062779 inset;
+	}
+	.calc__btn.calc__btn--secondary {
+		box-shadow:
+			0.125em 0.125em 0.25em #0007,
+			0 -0.05em 0 0.05em #0004,
+			0 0.05em 0 0.05em #fff1,
+			-0.125em 0 0.125em #454954 inset,
+			0 0.125em 0.125em #fff4 inset,
+			0.125em 0 0.125em #fff4 inset,
+			0 -0.125em 0.125em #454954 inset;
+	}
+	.calc__btn.calc__btn--secondary:active, .calc__btn.calc__btn--secondary.calc__btn--active {
+		box-shadow:
+			0 0 0 #0007,
+			0 -0.05em 0 0.05em #0004,
+			0 0.05em 0 0.05em #fff1,
+			-0.125em 0 0.125em #2e3138 inset,
+			0 0.125em 0.125em #0004 inset,
+			0.125em 0 0.125em #0004 inset,
+			0 -0.125em 0.125em #2e3138 inset;
+	}
+	.calc__logo {
+		text-shadow: 0 0 0.25em #fff4;
+	}
+	.calc__screen {
+		border-top: 0.25rem solid #2e3138;
+		border-right: 0.25rem solid #2e3138;
+		border-bottom: 0.25rem solid #454954;
+		border-left: 0.25rem solid #454954;
+	}
+}
+/* Animation */
+@keyframes valueBlink {
+	from {
+		color: #17181c00;
+		text-shadow: 0.1rem 0.1rem 0.1rem #0000;
+	}
+	to {
+		color: #17181c;
+		text-shadow: 0.1rem 0.1rem 0.1rem #0004;
+	}
+}
